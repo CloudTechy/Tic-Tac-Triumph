@@ -28,6 +28,7 @@ function Tile({ index }: { index: number }) {
     socket,
     activePlayer,
     setActivePlayer,
+    setWinner,
     score,
     setScore,
     allPlayers,
@@ -100,9 +101,8 @@ function Tile({ index }: { index: number }) {
         setScore(newScore)
 
         setGameState(win);
-
+        setWinner(value1);
         setStrikeClass(strikeClass);
-
         return;
       }
     }
@@ -110,6 +110,7 @@ function Tile({ index }: { index: number }) {
     const areAllTilesFilledIn = tiles.every((tile) => tile);
     if (areAllTilesFilledIn) {
       setGameState(DRAW_STATE);
+      setWinner("Draw");
     }
   }
 

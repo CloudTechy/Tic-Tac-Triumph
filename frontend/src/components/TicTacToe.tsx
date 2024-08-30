@@ -19,8 +19,7 @@ gameOverSound.volume = 0.2;
 import "./style.css";
 
 function TicTacToe() {
-  const { gameState, socket} = useAppContext();
-
+  const { gameState, winner, socket, waitingForPlayer } = useAppContext();
 
   useEffect(() => {
     if (gameState === X_WINS_STATE || gameState === O_WINS_STATE) {
@@ -31,13 +30,18 @@ function TicTacToe() {
 
   return (
     <div className="tictactoe">
-      <Board />
-      <Reset />
-      <PlayerStatus/>
-      <ScoreBoard/>
-      {gameState === X_WINS_STATE || gameState === O_WINS_STATE ? (
-        <EndGameModal/>
-      ) : null}
+      {waitingForPlayer ? (
+        <div className="waiting-message">Waiting for player...</div>
+      ) : (
+        <>
+          <Board />
+          <Reset />
+          {winner && <div className="winner">Winner: {winner}</div>}
+           <PlayerStatus/>
+          <ScoreBoard/>
+          {winner ? (<EndGameModal/> ) : null}
+        </>
+      )}
 
     </div>
   );

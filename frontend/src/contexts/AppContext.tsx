@@ -27,11 +27,14 @@ export type AppContextType = {
   setCurrentPlayer: React.Dispatch<React.SetStateAction<Player | null>>;
   activePlayer: Player | null;
   setActivePlayer: React.Dispatch<React.SetStateAction<Player | null>>;
+  winner: string | null;
+  setWinner: React.Dispatch<React.SetStateAction<string | null>>;
+  waitingForPlayer: boolean;
+  setWaitingForPlayer: React.Dispatch<React.SetStateAction<boolean>>;
   allPlayers: Player[] | null;
   setAllPlayers: React.Dispatch<React.SetStateAction<Player[] | null>>;
   score: Score;
   setScore: React.Dispatch<React.SetStateAction<Score>>;
-
 };
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
